@@ -4,7 +4,7 @@ include .env
 
 # Project variables
 PROJECT_NAME ?= microtrader
-ORG_NAME ?= dockerproductionaws
+ORG_NAME ?= dockerproductionawsaravind
 REPO_NAME ?= microtrader
 TEST_REPO_NAME ?= microtrader-dev
 TEST_DIR ?= build/test-results/junit/
@@ -22,6 +22,14 @@ export BUILD_ID ?=
 
 # Common settings
 include Makefile.settings
+
+
+
+
+# AWS ECR settings
+DOCKER_REGISTRY = 553308542477.dkr.ecr.us-east-1.amazonaws.com
+AWS_ACCOUNT_ID = 553308542477
+DOCKER_LOGIN_EXPRESSION := eval $$(aws ecr get-login --registry-ids $(AWS_ACCOUNT_ID) --no-include-email)
 
 .PHONY: version test build release clean tag tag%default login logout publish compose dcompose database save load demo all
 
